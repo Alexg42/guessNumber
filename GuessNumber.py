@@ -1,4 +1,5 @@
 # This is a simple guess the number game
+#todo - input validation, re-factoring
 
 import random
 
@@ -8,11 +9,27 @@ print('Hello! What is your name?')
 
 myName = input()
 
-number = random.randint(1, 20)
+print('Hi ' + myName + '! What difficulty would you like? Type a number. 1 = Easy, 2 = Medium, 3 = Hard')
 
-print('Well, ' + myName + ', I am thinking of a number between 1 and 20. Take a guess.')
+difficulty = int(input())
 
-while guessesTaken < 6:
+if (difficulty == 1):
+    maximum = 20
+    maxGuesses = 6
+    
+elif (difficulty == 2):
+    maximum = 50
+    maxGuesses = 8
+    
+elif (difficulty == 3):
+    maximum = 100
+    maxGuesses = 10
+
+number = random.randint(1, maximum)
+
+print('Well, ' + myName + ', I am thinking of a number between 1 and ' + str(maximum) + '. Take a guess.')
+
+while guessesTaken < maxGuesses:
     guess = input()
     guess = int(guess)
     guessesTaken = guessesTaken + 1
