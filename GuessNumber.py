@@ -1,5 +1,4 @@
 # This is a simple guess the number game
-# todo - input validation, re-factoring
 
 import random
 
@@ -29,17 +28,24 @@ elif difficulty == 3:
 
 number = random.randint(1, maximum)
 
-print('Well, ' + myName + ', I am thinking of a number between 1 and ' + str(maximum) + '. Take a guess.')
+print('Well, ' + myName + ', I am thinking of a number between 1 and ' + str(maximum) + '. Take a guess.\n')
 
 while guessesTaken < maxGuesses:
-    guess = int(input())
+    while True:
+        try:
+            guess = int(input())
+        except ValueError:
+            print("Please enter a number.\n")
+            continue
+        else:
+            break
     guessesTaken = guessesTaken + 1
     if guess > number:
-        print('Your guess was too high!')
+        print('Your guess was too high!\n')
     elif guess < number:
-        print('Your guess was too low!')
+        print('Your guess was too low!\n')
     elif guess == number:
         print('Well done ' + myName + '! You have guessed correctly! You guessed the number in ' + str(guessesTaken) +
-              ' guesses.')
+              ' guesses.\n')
 
 print('Unlucky. You did not guess the correct number. It was ' + str(number) + '.\n')
